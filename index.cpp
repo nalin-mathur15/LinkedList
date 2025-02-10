@@ -169,9 +169,74 @@ public:
 //example usage
 int main() {
     LinkedList ll;
+    int choice;
+    cout << "Welcome to the Linked List Class" <<endl;
+
+    cout<< "Let's build a Linked List" <<endl;
     ll.createList();
-    cout << "\nList after removing duplicates: \n";
-    ll.removeDuplicates();
-    ll.displayLL();
+
+    do {
+        cout<< "\n-------- MENU -------" <<endl;
+        cout<< "1. Display list" <<endl;
+        cout<< "2. Append Element" <<endl;
+        cout<< "3. Append List" <<endl;
+        cout<< "4. Sort List" <<endl;
+        cout<< "5. Remove Duplicates" <<endl;
+        cout<< "6. Create New List" <<endl;
+        cout<< "0 to exit" <<endl;
+        cin>> choice;
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+        switch (choice) {
+            case 1: 
+                cout<< "\nCurrent List:";
+                ll.displayLL();
+                break;
+            
+            case 2: {
+                int val;
+                cout<< "Value to append: ";
+                cin>> val;
+                ll.append(val);
+                cout<< "\nAppended: ";
+                ll.displayLL();
+                break;
+            }
+            case 3: {
+                LinkedList list2;
+                cout<< "Create the list to be appended" <<endl;
+                list2.createList();
+                ll.appendList(list2);
+                cout<< "Appended: ";
+                ll.displayLL();
+                break;
+            }
+            case 4: {
+                ll.sort();
+                cout<< "List sorted: ";
+                ll.displayLL();
+                break;
+            }
+            case 5: {
+                ll.removeDuplicates();
+                cout<< "Duplicates pruned: ";
+                ll.displayLL();
+                break;
+            }
+            case 6: {
+                ll.delList();
+                cout<< "\n List deleted. Please create a new list." <<endl;
+                ll.createList();
+                break;
+            }
+            case 0: {
+                cout<< "Exiting..." <<endl;
+                break;
+            }
+            default: 
+                cout<< "Invalid Entry. Please retry with a valid action." <<endl;
+        }
+    } while (choice != 0);
     return 0;
 }
